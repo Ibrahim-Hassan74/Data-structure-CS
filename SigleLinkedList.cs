@@ -20,10 +20,7 @@ namespace main.DataStructure
             this.head = this.tail = null;
             this.len = 0;
         }
-        public bool empty()
-        {
-            return len == 0;
-        }
+        public bool empty() => len == 0;
         public void push_front(T val)
         {
             Node newnode = new Node(val);
@@ -254,10 +251,7 @@ namespace main.DataStructure
                 n = n.next;
             }
         }
-        public int size()
-        {
-            return len;
-        }
+        public int size() => len;
         public void copy(T[] a)
         {
             for (int i = 0; i < a.Length; i++)
