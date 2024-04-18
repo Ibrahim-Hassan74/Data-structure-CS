@@ -1,11 +1,16 @@
-﻿namespace main.DataStructure
+namespace main.DataStructure
 {
     public class SigleLinkedList<T> where T : IComparable
     {
-        class Node
+        public class Node
         {
             public T item;
             public Node next;
+            public Node(T item)
+            {
+                this.item = item;
+                this.next = null;
+            }
         }
         private Node head;
         private Node tail;
@@ -21,12 +26,10 @@
         }
         public void push_front(T val)
         {
-            Node newnode = new Node();
-            newnode.item = val;
+            Node newnode = new Node(val);
             if (len == 0)
             {
                 this.head = this.tail = newnode;
-                newnode.next = null;
             }
             else
             {
@@ -35,19 +38,26 @@
             }
             len++;
         }
+        public void push_back(params T[] a)
+        {
+            foreach (var i in a)
+                push_back(i);
+        }
+        public void push_front(params T[] a)
+        {
+            foreach(var i in a)
+                push_front(i);
+        }
         public void push_back(T val)
         {
-            Node newnode = new Node();
-            newnode.item = val;
+            Node newnode = new Node(val);
             if (len == 0)
             {
                 this.tail = this.head = newnode;
-                newnode.next = null;
             }
             else
             {
                 this.tail.next = newnode;
-                newnode.next = null;
                 this.tail = newnode;
             }
             len++;
@@ -56,8 +66,7 @@
         {
             if (pos < 0 || pos > len)
                 throw new IndexOutOfRangeException();
-            Node node = new Node();
-            node.item = val;
+            Node node = new Node(val);
             if (pos == 0)
                 push_front(val);
             else if (pos == len)
@@ -129,7 +138,7 @@
                 while (cur != null)
                 {
                     if (object.Equals(cur.item, element))
-                        break;
+                        break; 
                     prev = cur;
                     cur = cur.next;
                 }
@@ -145,7 +154,7 @@
         {
             if (empty())
                 throw new Exception("List is empty\n");
-            if (pos > len)
+            if (pos > len || pos < 0)
                 throw new IndexOutOfRangeException();
             if (pos == 0)
             {
