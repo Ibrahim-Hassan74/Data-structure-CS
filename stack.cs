@@ -1,11 +1,16 @@
-﻿namespace main.DataStructure
+namespace main.DataStructure
 {
-    public class stack<T>
+    public class stack<T> where T : IComparable
     {
         private class node
         {
             public T val;
             public node next;
+            public node(T item)
+            {
+                this.val = item;
+                this.next = null;
+            }
         }
         node top;
         public stack()
@@ -18,8 +23,7 @@
         }
         public void push(T x)
         {
-            node newnode = new node();
-            newnode.val = x;
+            node newnode = new node(x);
             newnode.next = top;
             top = newnode;
         }
@@ -27,16 +31,12 @@
         {
             if (empty())
                 throw new Exception("Stack is empty");
-            node newnode = top;
             top = top.next;
-            newnode = newnode.next = null;
         }
         public void pop(ref T x)
         {
             x = top.val;
-            node newnode = top;
             top = top.next;
-            newnode = newnode.next = null;
         }
         public T getTop()
         {
