@@ -1,4 +1,4 @@
-﻿namespace main.DataStructure
+namespace main.DataStructure
 {
     public class ArrayList<T> where T : IComparable
     {
@@ -10,17 +10,20 @@
         {
             this.size = sz;
         }
-        public T GetValue(int i)
+        public T this[int indx]
         {
-            if (i >= size || i < 0)
-                throw new IndexOutOfRangeException("out of range");
-            return a[i];
-        }
-        public void SetValue(int i, T value)
-        {
-            if (i >= size || i < 0)
-                throw new IndexOutOfRangeException("out of range");
-            a[i] = value;
+            get
+            {
+                if (indx >= size || indx < 0)
+                    throw new IndexOutOfRangeException("out of range");
+                return a[indx];
+            }
+            set
+            {
+                if (indx >= size || indx < 0)
+                    throw new IndexOutOfRangeException("out of range");
+                a[indx] = value;
+            }
         }
         public void push_back(T val)
         {
@@ -36,10 +39,7 @@
             }
             size--;
         }
-        public int Size()
-        {
-            return size;
-        }
+        public int Size() => size;
         public void print()
         {
             for (int i = 0; i < size; i++)
@@ -73,14 +73,8 @@
             a[indx] = val;
             size++;
         }
-        public T Begin()
-        {
-            return a[0];
-        }
-        public T End()
-        {
-            return a[size - 1];
-        }
+        public T Begin() => a[0];
+        public T End() => a[size - 1];
         public void erase(int index)
         {
             if (isEmpty())
@@ -118,10 +112,7 @@
             }
             return -1;
         }
-        public bool isEmpty()
-        {
-            return size == 0;
-        }
+        public bool isEmpty() => size == 0;
         public void clear()
         {
             a = null;
