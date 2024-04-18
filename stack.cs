@@ -17,10 +17,7 @@ namespace main.DataStructure
         {
             top = null;
         }
-        public bool empty()
-        {
-            return top == null;
-        }
+        public bool empty() => top == null;
         public void push(T x)
         {
             node newnode = new node(x);
